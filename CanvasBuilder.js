@@ -105,12 +105,12 @@
             el.classList.remove("hide");
         }
 
-        _logicForHideShowAB(number, selector) {
+        _logicForHideShowAB(e, number, selector) {
             let currentNumber = document.querySelector(selector);
             let pos = currentNumber.classList.contains("numberA") ? 0 : 1;
        
-            if (event.target.value === "" + number) {
-                this.hide(event.target);
+            if (e.target.value === "" + number) {
+                this.hide(e.target);
                 this.drawNumber(this.data.inputX[pos], this.data.inputY[pos], number);
                 currentNumber.classList.remove("error2");
 
@@ -125,15 +125,15 @@
                 }
 
             } else {
-                event.target.classList.add("error");
+                e.target.classList.add("error");
                 currentNumber.classList.add("error2");
             }               
         }
 
-        _logicForHideShowQuestion() {
+        _logicForHideShowQuestion(e) {
             let input = document.querySelector(".input_question");
 
-            if (event.target.value === this.a + this.b + "") {
+            if (e.target.value === this.a + this.b + "") {
                 let mark = document.querySelector(".question_mark");
                 mark.innerHTML = this.a + this.b;
                 this.hide(input);
@@ -150,15 +150,15 @@
 
         _onInput(event) {
             if (event.target.classList.contains("inputA")) {
-                this._logicForHideShowAB(this.a, ".numberA");
+                this._logicForHideShowAB(event, this.a, ".numberA");
             }
 
             if (event.target.classList.contains("inputB")) {
-                this._logicForHideShowAB(this.b, ".numberB");
+                this._logicForHideShowAB(event, this.b, ".numberB");
             }
 
             if (event.target.classList.contains("input_question")) {
-                this._logicForHideShowQuestion();
+                this._logicForHideShowQuestion(event);
             }
             
         }
